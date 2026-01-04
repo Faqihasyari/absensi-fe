@@ -14,9 +14,9 @@ export const useAuthStore = defineStore("auth", {
 
     actions:{
         // login
-        async login (nama, nim){
+        async login (payload){
             try {
-                const response = await api.post('/auth/login', { nama, nim });
+                const response = await api.post('/auth/login', payload);
 
             const {token, user} = response.data;
 
@@ -34,7 +34,7 @@ export const useAuthStore = defineStore("auth", {
             } catch (error) {
                 throw error.response?.data || {message: "Login gagal"};
             }
-            
+
         },
 
         // logout
