@@ -28,7 +28,7 @@ const handleLogin = async () => {
     })
 
     // redirect setelah login
-    router.push('/dashboard')
+    router.push('/admin')
   } catch (error) {
     errorMessage.value =
       error.response?.data?.message || 'Login gagal'

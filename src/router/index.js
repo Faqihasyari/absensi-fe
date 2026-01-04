@@ -1,64 +1,46 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// import { useAuthStore } from '@/stores/auth.store'
 
-// import views
-import LoginView from '@/views/LoginView.vue'
-import DashboardView from '@/views/DashboardView.vue'
-// import AttendanceView from '@/views/AttendanceView.vue'
-// import PermissionViw from '@/views/PermissionView.vue'
+import LoginView from '@/views/auth/LoginView.vue'
+import DashboardAdmin from '@/views/admin/DashboardAdmin.vue'
+import DashboardHome from '@/views/admin/DashboardHome.vue'
+import UserListView from '@/views/admin/users/UserListView.vue'
+import UserCreateView from '@/views/admin/users/UserCreateView.vue'
+
 const routes = [
-    {
-    path: '/',
-    redirect: '/login',
-  },
+  { path: '/', redirect: '/login' },
+
   {
     path: '/login',
     name: 'Login',
     component: LoginView,
-    meta: { guest: true },
+    meta: { guest: true }
   },
 
   {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: DashboardView,
+    path: '/admin',
+    component: DashboardAdmin,
     meta: { requiresAuth: true },
-  },
-  // {
-  //   path: '/permission',
-  //   name: 'Permission',
-  //   component: PermissionViw,
-  //   meta: { requiresAuth: true },
-  // },
-  // {
-  //   path: '/attendance',
-  //   name: 'Attendance',
-  //   component: AttendanceView,
-  //   meta: { requiresAuth: true },
-  // },
+    children: [
+      {
+        path: '',
+        name: 'AdminDashboard',
+        component: DashboardHome
+      },
+      {
+        path: 'users',
+        name: 'UserList',
+        component: UserListView
+      },
+      {
+        path: 'users/create',
+        name: 'UserCreate',
+        component: UserCreateView
+      }
+    ]
+  }
 ]
 
-const router = createRouter({
+export default createRouter({
   history: createWebHistory(),
-  routes,
+  routes
 })
-
-// pelindung route
-// router.beforeEach((to, from, next) => {
-//   const authStore = useAuthStore()
-//   const isLoggedIn = authStore.isLoggedIn
-
-//   // guard butuh login
-//   if (to.meta.requiresAuth && !isLoggedIn) {
-//     return next({ name: 'Login' })
-//   }
-
-//   // guard guest
-//   if (to.meta.guest && isLoggedIn) {
-//     return next({ name: 'Dashboard' })
-//   }
-
-//   next()
-// })
-
-export default router
