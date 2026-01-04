@@ -34,6 +34,8 @@ onMounted(fetchUsers)
           <th>NIM</th>
           <th>Jabatan</th>
           <th>Role</th>
+          <th>QR Code</th>
+          <th>Aksi</th>
         </tr>
       </thead>
       <tbody>
@@ -42,6 +44,28 @@ onMounted(fetchUsers)
           <td>{{ u.nim }}</td>
           <td>{{ u.jabatan }}</td>
           <td>{{ u.role }}</td>
+          <td>
+          <img
+  v-if="u.qr_token"
+  :src="`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${u.qr_token}`"
+  width="80"
+/>
+<span v-else>-</span>
+
+
+
+          </td>
+          <td>
+        <a
+  v-if="u.qr_token"
+  :href="`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${u.qr_token}`"
+  :download="`QR-${u.nama}.png`"
+>
+  Download
+</a>
+<span v-else>-</span>
+
+      </td>
         </tr>
       </tbody>
     </table>
