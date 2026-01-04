@@ -8,11 +8,13 @@ import { RouterLink, RouterView } from 'vue-router'
     <aside class="sidebar">
       <h2>Admin</h2>
 
-      <nav>
-        <RouterLink to="/admin">Dashboard</RouterLink>
-        <RouterLink to="/admin/users">Daftar User</RouterLink>
-        <RouterLink to="/admin/users/create">Tambah User</RouterLink>
-      </nav>
+<nav>
+  <RouterLink to="/admin">Dashboard</RouterLink>
+  <RouterLink to="/admin/users">Daftar User</RouterLink>
+  <RouterLink to="/admin/users/create">Tambah User</RouterLink>
+  <RouterLink to="/admin/meetings">Daftar Rapat</RouterLink>
+  <RouterLink to="/admin/meetings/create">Buat Rapat</RouterLink>
+</nav>
     </aside>
 
     <!-- MAIN CONTENT -->

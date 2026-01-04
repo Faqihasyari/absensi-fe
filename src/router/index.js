@@ -5,6 +5,8 @@ import DashboardAdmin from '@/views/admin/DashboardAdmin.vue'
 import DashboardHome from '@/views/admin/DashboardHome.vue'
 import UserListView from '@/views/admin/users/UserListView.vue'
 import UserCreateView from '@/views/admin/users/UserCreateView.vue'
+import MeetingListView from '@/views/admin/meeting/MeetingListView.vue'
+import MeetingCreateView from '@/views/admin/meeting/MeetingCreateView.vue'
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -35,8 +37,11 @@ const routes = [
         path: 'users/create',
         name: 'UserCreate',
         component: UserCreateView
-      }
+      },
+      { path: 'meetings', component: MeetingListView },
+      { path: 'meetings/create', component: MeetingCreateView },
     ]
+
   }
 ]
 
