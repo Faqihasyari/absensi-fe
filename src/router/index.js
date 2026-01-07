@@ -7,6 +7,8 @@ import UserListView from '@/views/admin/users/UserListView.vue'
 import UserCreateView from '@/views/admin/users/UserCreateView.vue'
 import MeetingListView from '@/views/admin/meeting/MeetingListView.vue'
 import MeetingCreateView from '@/views/admin/meeting/MeetingCreateView.vue'
+import ScanAttendanceView from '@/views/admin/attendance/ScanAttendanceView.vue'
+import AttendanceRecapView from '@/views/admin/attendance/attendanceRecapView.vue'
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -40,6 +42,9 @@ const routes = [
       },
       { path: 'meetings', component: MeetingListView },
       { path: 'meetings/create', component: MeetingCreateView },
+      {path: 'attendance/scan', component: ScanAttendanceView },
+      {path: 'attendance/recap', component: AttendanceRecapView },
+
     ]
 
   }
