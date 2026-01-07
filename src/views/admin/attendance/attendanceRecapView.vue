@@ -1,8 +1,8 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import axios from '@/services/api'
 
-const meeting_id = ref('')
+const nama_rapat = ref('')
 const attendances = ref([])
 const loading = ref(false)
 const error = ref('')
@@ -11,21 +11,23 @@ const fetchAttendance = async () => {
   error.value = ''
   attendances.value = []
 
-  if (!meeting_id.value) {
-    error.value = 'Meeting ID wajib diisi'
+  if (!nama_rapat.value) {
+    error.value = 'Nama rapat wajib diisi'
     return
   }
 
   try {
     loading.value = true
-    const res = await axios.get('/attendance', {
-      params: { meeting_id: meeting_id.value },
+    const res = await axios.get('/attendance/search', {
+      params: {
+        nama_rapat: nama_rapat.value
+      }
     })
 
     attendances.value = res.data.data
   } catch (err) {
     error.value =
-      err.response?.data?.message || 'Gagal mengambil data absensi'
+      err.response?.data?.message || 'Gagal mengambil rekap absensi'
   } finally {
     loading.value = false
   }
@@ -38,12 +40,11 @@ const fetchAttendance = async () => {
 
     <div class="filter">
       <input
-        v-model="meeting_id"
-        type="number"
-        placeholder="Masukkan ID rapat"
+        v-model="nama_rapat"
+        placeholder="Cari nama rapat"
       />
       <button @click="fetchAttendance">
-        Lihat Rekap
+        Cari
       </button>
     </div>
 
@@ -69,38 +70,7 @@ const fetchAttendance = async () => {
     </table>
 
     <p v-if="!loading && attendances.length === 0">
-      Belum ada data absensi
+      Tidak ada data absensi
     </p>
   </div>
 </template>
-
-<style scoped>
-.page {
-  padding: 24px;
-}
-
-.filter {
-  margin-bottom: 16px;
-}
-
-input {
-  padding: 8px;
-  margin-right: 8px;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-}
-
-th,
-td {
-  padding: 10px;
-  border: 1px solid #ddd;
-}
-
-.error {
-  color: red;
-}
-</style>

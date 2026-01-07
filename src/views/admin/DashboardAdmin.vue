@@ -15,6 +15,8 @@ import { RouterLink, RouterView } from 'vue-router'
   <RouterLink to="/admin/meetings">Daftar Rapat</RouterLink>
   <RouterLink to="/admin/meetings/create">Buat Rapat</RouterLink>
   <RouterLink to="/admin/attendance/scan">Scan Absensi</RouterLink>
+  <RouterLink to="/admin/attendance/recap">Recap Absensi</RouterLink>
+
 </nav>
     </aside>
 
