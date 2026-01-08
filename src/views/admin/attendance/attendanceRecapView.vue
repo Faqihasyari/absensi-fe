@@ -26,6 +26,7 @@ const fetchAttendance = async () => {
 
     attendances.value = res.data.data
   } catch (err) {
+    console.log(err.response)
     error.value =
       err.response?.data?.message || 'Gagal mengambil rekap absensi'
   } finally {
